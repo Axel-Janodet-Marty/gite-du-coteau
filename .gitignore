@@ -1,0 +1,6 @@
+# Fichiers de sauvegarde locaux — ne pas envoyer sur GitHub
+Ancienne_version_a_conserver.txt
+CSS_avant_a_conserver.txt
+
+# Dossier de build vide
+.dist/
