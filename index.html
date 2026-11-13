@@ -2,6 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <!-- Sécurité : politique de contenu et de référent -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Gîte du Coteau à Asnières sous Bois 89</title>
   <meta name="description" content="Gîte du Coteau à Asnières-sous-Bois (89) — Grande maison familiale 12 couchages, piscine, jardin, Wi-Fi fibre. À 10 km de Vézelay.">
 
@@ -41,10 +44,8 @@
   </script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E🏡%3C/text%3E%3C/svg%3E">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" href="fonts/raleway-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="Style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 
@@ -124,7 +125,7 @@
     <span class="badge en">🏊‍♀️ Swimming pool</span>
 
    <!-- Le badge AirBnB cliquable -->
-    <a href="https://www.airbnb.fr/rooms/1476569417973861294" target="_blank" class="badge-airbnb-link">
+    <a href="https://www.airbnb.fr/rooms/1476569417973861294" target="_blank" rel="noopener noreferrer" class="badge-airbnb-link">
         <span class="badge fr">Référencé AirBnB</span>
         <span class="badge en">Referenced on AirBnB</span>
     </a>
@@ -140,7 +141,7 @@
         <span class="fr">Haute saison <strong>1400 € /semaine</strong><br>Prix par nuit <strong>220 € /nuit</strong></span>
         <span class="en">High season <strong>1400 €/week</strong><br>Price per night <strong>220 € /night</strong></span>
       </p>
-      <p>
+      <p class="prix-note">
         <span class="fr">(Vacances d'été et de Noël)</span>
         <span class="en">(Summer and Christmas holidays)</span>
       </p>
@@ -149,7 +150,7 @@
         <span class="fr">Moyenne saison <strong>1250 € /semaine</strong><br>Prix par nuit <strong>200 € /nuit</strong></span>
         <span class="en">Medium season <strong>1250 €/week</strong><br>Price per night <strong>200 € /night</strong></span>
       </p>
-      <p>
+      <p class="prix-note">
         <span class="fr">(Vacances de printemps)</span>
         <span class="en">(Spring holidays)</span>
       </p>
@@ -168,7 +169,7 @@
         <span class="fr">Week-end hors vacances scolaires <strong>500 € /week-end</strong></span>
         <span class="en">Weekend outside of holidays, cleaning included <strong>500 €/week-end</strong></span>
       </p>
-      <p>
+      <p class="prix-note">
         <span class="fr">(Du vendredi 17h au dimanche 17h + ménage compris)</span>
         <span class="en">(Friday 5pm to Sunday 5pm, cleaning included)</span>
       </p>
@@ -302,6 +303,7 @@
   <li><span class="fr">Escapades viticoles dans le Chablisien</span><span class="en">Wine tours in the Chablis region</span></li>
 </ul>
 
+    </section>
 
 <!-- ===== CALENDRIER DISPONIBILITÉS ===== -->
 <section class="availability-section reveal" id="disponibilites">
@@ -499,16 +501,22 @@
         <span class="fr">Asnières-sous-Bois, 89660 (Yonne) — À 10 km de Vézelay, 2h15 de Paris par l'A6</span>
         <span class="en">Asnières-sous-Bois, 89660 (Yonne) — 10 km from Vézelay, 2h15 from Paris via A6</span>
       </p>
-      <div class="map-container">
-        <iframe
-          src="https://maps.google.com/maps?q=Asni%C3%A8res-sous-Bois%2C+89660%2C+France&t=m&z=14&ie=UTF8&iwloc=&output=embed"
-          width="100%"
-          height="380"
-          loading="lazy"
-          title="Carte Asnières-sous-Bois"
-          style="border:0; border-radius:12px;"
-          allowfullscreen>
-        </iframe>
+      <div class="map-container" id="map-container">
+        <div class="map-placeholder">
+          <p class="map-placeholder-address">Asnières-sous-Bois, 89660 (Yonne)</p>
+          <button type="button" id="map-load" class="map-load-btn">
+            <span class="fr">🗺️ Afficher la carte</span>
+            <span class="en">🗺️ Show the map</span>
+          </button>
+          <p class="map-placeholder-note">
+            <span class="fr">La carte est fournie par Google Maps. En l'affichant, vous acceptez que Google reçoive votre adresse IP et puisse déposer des cookies.</span>
+            <span class="en">The map is provided by Google Maps. By showing it, you agree that Google receives your IP address and may set cookies.</span>
+          </p>
+          <a class="map-external-link" href="https://www.google.com/maps/search/?api=1&amp;query=Asni%C3%A8res-sous-Bois%2C+89660" target="_blank" rel="noopener noreferrer">
+            <span class="fr">Ou ouvrir directement dans Google Maps</span>
+            <span class="en">Or open directly in Google Maps</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -518,8 +526,8 @@
         <span class="en">For any questions, please contact us at: <strong><a href="mailto:david.marty@laposte.net">david.marty@laposte.net</a></strong> or <strong>06 11 69 10 21</strong></span>
       </p>
       <p>
-        <span class="fr">Gîte référencé airbnb :  <strong><a href="https://www.airbnb.fr/rooms/1476569417973861294?source_impression_id=p3_1770892111_P3GLExwd4BctLx8h">Voir le gîte</a></strong></span>
-        <span class="en">Listing on Airbnb: <strong><a href="https://www.airbnb.fr/rooms/1476569417973861294?source_impression_id=p3_1770892111_P3GLExwd4BctLx8h">See the cottage</a></strong></span>
+        <span class="fr">Gîte référencé airbnb :  <strong><a href="https://www.airbnb.fr/rooms/1476569417973861294">Voir le gîte</a></strong></span>
+        <span class="en">Listing on Airbnb: <strong><a href="https://www.airbnb.fr/rooms/1476569417973861294">See the cottage</a></strong></span>
       </p>
       <p>
         <span class="fr">&copy; 2025 Mon logement – Merci de votre visite ❤️</span>
@@ -542,216 +550,6 @@
 
   <!-- Début du script JavaScript -->
 
-  <script>
-    const toggleBtn = document.getElementById('lang-toggle');
-
-    toggleBtn.addEventListener('click', () => {
-      const isEnglish = document.body.classList.toggle('lang-en');
-      toggleBtn.textContent = isEnglish ? '🇫🇷 Français' : '🇬🇧 English';
-      document.documentElement.lang = isEnglish ? 'en' : 'fr';
-    });
-
-    // Script lightbox
-    const links = Array.from(document.querySelectorAll('.lightbox-link'));
-    const lightbox = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    const nextBtn = document.getElementById('next');
-    const prevBtn = document.getElementById('prev');
-    let currentIndex = 0;
-
-    function showImage(index) {
-      const link = links[index];
-      img.src = link.href;
-      lightbox.classList.add('active');
-      currentIndex = index;
-    }
-
-    links.forEach((link, index) => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        showImage(index);
-      });
-    });
-
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentIndex = (currentIndex + 1) % links.length;
-      showImage(currentIndex);
-    });
-
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentIndex = (currentIndex - 1 + links.length) % links.length;
-      showImage(currentIndex);
-    });
-
-    lightbox.addEventListener('click', function (e) {
-      if (e.target === img || e.target === nextBtn || e.target === prevBtn) return;
-      lightbox.classList.remove('active');
-      img.src = "";
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (!lightbox.classList.contains('active')) return;
-
-      if (e.key === "ArrowRight") {
-        currentIndex = (currentIndex + 1) % links.length;
-        showImage(currentIndex);
-      }
-
-      if (e.key === "ArrowLeft") {
-        currentIndex = (currentIndex - 1 + links.length) % links.length;
-        showImage(currentIndex);
-      }
-
-      if (e.key === "Escape") {
-        lightbox.classList.remove('active');
-        img.src = "";
-      }
-    });
-
-    const toTop = document.getElementById('toTop');
-      window.addEventListener('scroll', () => {
-  toTop.style.display = window.scrollY > 600 ? 'block' : 'none';
-});
-toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  // ===================================================
-  // CALENDRIER DISPONIBILITÉS
-  // ===================================================
-  // 📝 POUR MODIFIER LES RÉSERVATIONS :
-  // Ajoutez ou supprimez des plages dans le tableau ci-dessous.
-  // Format : { start: "AAAA-MM-JJ", end: "AAAA-MM-JJ" }
-  // Les deux bornes (start et end) sont INCLUSES.
-  // ===================================================
-  // Les réservations sont dans reservations.json — éditez ce fichier pour les mettre à jour
-  // Les dates ci-dessous servent de fallback si le fichier JSON ne charge pas (ex: ouverture locale)
-  let bookedRanges = [
-    { start: "2026-04-04", end: "2026-04-06" },
-    { start: "2026-04-16", end: "2026-04-19" },
-    { start: "2026-04-29", end: "2026-05-02" },
-    { start: "2026-05-07", end: "2026-05-09" },
-    { start: "2026-05-14", end: "2026-05-17" },
-    { start: "2026-05-22", end: "2026-05-25" },
-    { start: "2026-06-12", end: "2026-06-13" },
-    { start: "2026-07-02", end: "2026-07-06" },
-    { start: "2026-07-04", end: "2026-07-08" },
-    { start: "2026-08-01", end: "2026-08-15" },
-  ];
-
-  fetch('reservations.json')
-    .then(r => r.json())
-    .then(data => { bookedRanges = data; renderCalendars(); })
-    .catch(() => {});
-
-  // Utilitaires
-  function toYMD(d) {
-    return d.toISOString().slice(0, 10);
-  }
-  function isBooked(dateStr) {
-    return bookedRanges.some(r => dateStr >= r.start && dateStr <= r.end);
-  }
-  function isPast(dateStr) {
-    return dateStr < toYMD(new Date());
-  }
-  function isToday(dateStr) {
-    return dateStr === toYMD(new Date());
-  }
-
-  const MONTHS_FR = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
-  const MONTHS_EN = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-  const DAYS_FR   = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
-  const DAYS_EN   = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-
-  let calOffset = 0; // nombre de mois depuis aujourd'hui (0 = mois courant)
-
-  function renderCalendars() {
-    const grid = document.getElementById("calendars-grid");
-    const lang = document.documentElement.lang || 'fr';
-    grid.innerHTML = "";
-
-    for (let m = 0; m < 2; m++) {
-      const now = new Date();
-      const target = new Date(now.getFullYear(), now.getMonth() + calOffset + m, 1);
-      const year  = target.getFullYear();
-      const month = target.getMonth(); // 0-based
-
-      const monthName = (lang === 'en' ? MONTHS_EN : MONTHS_FR)[month];
-      const dayLabels = lang === 'en' ? DAYS_EN : DAYS_FR;
-
-      // Premier jour de la semaine (lundi = 0)
-      let firstDow = target.getDay(); // 0=Sun..6=Sat
-      firstDow = (firstDow === 0) ? 6 : firstDow - 1; // convert to Mon=0
-
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      // Build HTML
-      let html = `<div class="cal-month">`;
-      html += `<div class="cal-month-title">${monthName} ${year}</div>`;
-      html += `<div class="cal-grid">`;
-      dayLabels.forEach(d => {
-        html += `<div class="cal-cell cal-day-label">${d}</div>`;
-      });
-      // Empty cells before first day
-      for (let i = 0; i < firstDow; i++) {
-        html += `<div class="cal-cell cal-empty"></div>`;
-      }
-      for (let day = 1; day <= daysInMonth; day++) {
-        const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-        let cls = "cal-cell cal-day";
-        if (isToday(dateStr))   cls += " cal-today";
-        if (isPast(dateStr))    cls += " cal-past";
-        else if (isBooked(dateStr)) cls += " cal-booked";
-        else                    cls += " cal-available";
-        html += `<div class="${cls}">${day}</div>`;
-      }
-      html += `</div></div>`; // cal-grid + cal-month
-      grid.innerHTML += html;
-    }
-
-    // Disable prev if at current month
-    document.getElementById("cal-prev").disabled = (calOffset <= 0);
-  }
-
-  document.getElementById("cal-prev").addEventListener("click", () => {
-    if (calOffset > 0) { calOffset--; renderCalendars(); }
-  });
-  document.getElementById("cal-next").addEventListener("click", () => {
-    calOffset++;
-    renderCalendars();
-  });
-
-  renderCalendars();
-
-  // Re-render on lang toggle to update month/day names
-  toggleBtn.addEventListener('click', () => {
-    setTimeout(renderCalendars, 10);
-  });
-
-  // ===================================================
-
-let touchStartX = 0;
-
-lightbox.addEventListener('touchstart', (e) => {
-  touchStartX = e.changedTouches[0].clientX;
-}, { passive: true });
-
-lightbox.addEventListener('touchend', (e) => {
-  const dx = e.changedTouches[0].clientX - touchStartX;
-  if (Math.abs(dx) < 50) return;
-  if (dx < 0) nextBtn.click();
-  else prevBtn.click();
-});
-
-// Animation d'apparition au défilement pour les éléments .reveal
-const reveals = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.15 });
-
-reveals.forEach(reveal => revealObserver.observe(reveal));
-  </script>
+  <script src="script.js" defer></script>
+</body>
+</html>
