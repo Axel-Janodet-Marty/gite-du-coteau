@@ -4,220 +4,100 @@ if (window.top !== window.self) {
   window.top.location = window.self.location.href;
 }
 
-    const toggleBtn = document.getElementById('lang-toggle');
+// ===================================================
+// LANGUE
+// ===================================================
+const toggleBtn = document.getElementById('lang-toggle');
+const isEnglish = () => document.body.classList.contains('lang-en');
 
-    toggleBtn.addEventListener('click', () => {
-      const isEnglish = document.body.classList.toggle('lang-en');
-      toggleBtn.textContent = isEnglish ? '🇫🇷 Français' : '🇬🇧 English';
-      document.documentElement.lang = isEnglish ? 'en' : 'fr';
-    });
-
-    // Script lightbox
-    const links = Array.from(document.querySelectorAll('.lightbox-link'));
-    const lightbox = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    const nextBtn = document.getElementById('next');
-    const prevBtn = document.getElementById('prev');
-    let currentIndex = 0;
-
-    function showImage(index) {
-      const link = links[index];
-      img.src = link.href;
-      lightbox.classList.add('active');
-      currentIndex = index;
-    }
-
-    links.forEach((link, index) => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        showImage(index);
-      });
-    });
-
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentIndex = (currentIndex + 1) % links.length;
-      showImage(currentIndex);
-    });
-
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentIndex = (currentIndex - 1 + links.length) % links.length;
-      showImage(currentIndex);
-    });
-
-    lightbox.addEventListener('click', function (e) {
-      if (e.target === img || e.target === nextBtn || e.target === prevBtn) return;
-      lightbox.classList.remove('active');
-      img.src = "";
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (!lightbox.classList.contains('active')) return;
-
-      if (e.key === "ArrowRight") {
-        currentIndex = (currentIndex + 1) % links.length;
-        showImage(currentIndex);
-      }
-
-      if (e.key === "ArrowLeft") {
-        currentIndex = (currentIndex - 1 + links.length) % links.length;
-        showImage(currentIndex);
-      }
-
-      if (e.key === "Escape") {
-        lightbox.classList.remove('active');
-        img.src = "";
-      }
-    });
-
-    const toTop = document.getElementById('toTop');
-      window.addEventListener('scroll', () => {
-  toTop.style.display = window.scrollY > 600 ? 'block' : 'none';
-});
-toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  // ===================================================
-  // CALENDRIER DISPONIBILITÉS
-  // ===================================================
-  // 📝 POUR MODIFIER LES RÉSERVATIONS :
-  // Ajoutez ou supprimez des plages dans le tableau ci-dessous.
-  // Format : { start: "AAAA-MM-JJ", end: "AAAA-MM-JJ" }
-  // Les deux bornes (start et end) sont INCLUSES.
-  // ===================================================
-  // Les réservations sont dans reservations.json — éditez ce fichier pour les mettre à jour
-  // Les dates ci-dessous servent de fallback si le fichier JSON ne charge pas (ex: ouverture locale)
-  let bookedRanges = [
-    { start: "2026-04-04", end: "2026-04-06" },
-    { start: "2026-04-16", end: "2026-04-19" },
-    { start: "2026-04-29", end: "2026-05-02" },
-    { start: "2026-05-07", end: "2026-05-09" },
-    { start: "2026-05-14", end: "2026-05-17" },
-    { start: "2026-05-22", end: "2026-05-25" },
-    { start: "2026-06-12", end: "2026-06-13" },
-    { start: "2026-07-02", end: "2026-07-06" },
-    { start: "2026-07-04", end: "2026-07-08" },
-    { start: "2026-08-01", end: "2026-08-15" },
-  ];
-
-  // Ne garde que les plages au format attendu (AAAA-MM-JJ) : un fichier mal
-  // formé ou modifié ne peut ni casser le calendrier ni y injecter du contenu.
-  const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
-  function sanitizeRanges(data) {
-    if (!Array.isArray(data)) return null;
-    return data.filter(r =>
-      r && typeof r.start === 'string' && typeof r.end === 'string' &&
-      DATE_RE.test(r.start) && DATE_RE.test(r.end)
-    );
-  }
-
-  fetch('reservations.json', { cache: 'no-cache' })
-    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(data => {
-      const clean = sanitizeRanges(data);
-      if (clean) { bookedRanges = clean; renderCalendars(); }
-    })
-    .catch(() => {});
-
-  // Utilitaires
-  function toYMD(d) {
-    return d.toISOString().slice(0, 10);
-  }
-  function isBooked(dateStr) {
-    return bookedRanges.some(r => dateStr >= r.start && dateStr <= r.end);
-  }
-  function isPast(dateStr) {
-    return dateStr < toYMD(new Date());
-  }
-  function isToday(dateStr) {
-    return dateStr === toYMD(new Date());
-  }
-
-  const MONTHS_FR = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
-  const MONTHS_EN = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-  const DAYS_FR   = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
-  const DAYS_EN   = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-
-  let calOffset = 0; // nombre de mois depuis aujourd'hui (0 = mois courant)
-
-  // Crée un élément avec une classe et un texte (textContent : jamais interprété comme du HTML)
-  function el(tag, className, text) {
-    const node = document.createElement(tag);
-    if (className) node.className = className;
-    if (text !== undefined) node.textContent = text;
-    return node;
-  }
-
-  function renderCalendars() {
-    const grid = document.getElementById("calendars-grid");
-    const lang = document.documentElement.lang || 'fr';
-    const fragment = document.createDocumentFragment();
-
-    for (let m = 0; m < 2; m++) {
-      const now = new Date();
-      const target = new Date(now.getFullYear(), now.getMonth() + calOffset + m, 1);
-      const year  = target.getFullYear();
-      const month = target.getMonth(); // 0-based
-
-      const monthName = (lang === 'en' ? MONTHS_EN : MONTHS_FR)[month];
-      const dayLabels = lang === 'en' ? DAYS_EN : DAYS_FR;
-
-      // Premier jour de la semaine (lundi = 0)
-      let firstDow = target.getDay(); // 0=Sun..6=Sat
-      firstDow = (firstDow === 0) ? 6 : firstDow - 1; // convert to Mon=0
-
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      const monthEl = el('div', 'cal-month');
-      monthEl.appendChild(el('div', 'cal-month-title', `${monthName} ${year}`));
-
-      const calGrid = el('div', 'cal-grid');
-      dayLabels.forEach(d => calGrid.appendChild(el('div', 'cal-cell cal-day-label', d)));
-
-      // Cases vides avant le premier jour
-      for (let i = 0; i < firstDow; i++) {
-        calGrid.appendChild(el('div', 'cal-cell cal-empty'));
-      }
-
-      for (let day = 1; day <= daysInMonth; day++) {
-        const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-        let cls = "cal-cell cal-day";
-        if (isToday(dateStr))   cls += " cal-today";
-        if (isPast(dateStr))    cls += " cal-past";
-        else if (isBooked(dateStr)) cls += " cal-booked";
-        else                    cls += " cal-available";
-        calGrid.appendChild(el('div', cls, String(day)));
-      }
-
-      monthEl.appendChild(calGrid);
-      fragment.appendChild(monthEl);
-    }
-
-    grid.replaceChildren(fragment);
-
-    // Désactive "mois précédent" sur le mois courant
-    document.getElementById("cal-prev").disabled = (calOffset <= 0);
-  }
-
-  document.getElementById("cal-prev").addEventListener("click", () => {
-    if (calOffset > 0) { calOffset--; renderCalendars(); }
-  });
-  document.getElementById("cal-next").addEventListener("click", () => {
-    calOffset++;
-    renderCalendars();
-  });
-
+toggleBtn.addEventListener('click', () => {
+  const en = document.body.classList.toggle('lang-en');
+  toggleBtn.textContent = en ? '🇫🇷 Français' : '🇬🇧 English';
+  document.documentElement.lang = en ? 'en' : 'fr';
   renderCalendars();
+  if (lightbox.classList.contains('active')) updateCaption();
+});
 
-  // Re-render on lang toggle to update month/day names
-  toggleBtn.addEventListener('click', () => {
-    setTimeout(renderCalendars, 10);
+// ===================================================
+// VISIONNEUSE PHOTOS (lightbox)
+// ===================================================
+const links    = Array.from(document.querySelectorAll('.lightbox-link'));
+const lightbox = document.getElementById('lightbox');
+const img      = document.getElementById('lightbox-img');
+const nextBtn  = document.getElementById('next');
+const prevBtn  = document.getElementById('prev');
+const closeBtn = document.getElementById('lightbox-close');
+const titleEl  = document.getElementById('lightbox-title');
+const countEl  = document.getElementById('lightbox-count');
+let currentIndex = 0;
+
+// Nom de la pièce = titre du bloc de galerie qui contient la photo (dans la langue affichée)
+function roomName(link) {
+  const block = link.closest('.gallery-block');
+  if (!block) return '';
+  const span = block.querySelector('h3 ' + (isEnglish() ? '.en' : '.fr'));
+  return span ? span.textContent.trim() : '';
+}
+
+function updateCaption() {
+  titleEl.textContent = roomName(links[currentIndex]);
+  countEl.textContent = `${currentIndex + 1} / ${links.length}`;
+}
+
+function preload(index) {
+  const link = links[(index + links.length) % links.length];
+  if (link) new Image().src = link.href;
+}
+
+function showImage(index) {
+  currentIndex = (index + links.length) % links.length;
+  const link = links[currentIndex];
+  const thumb = link.querySelector('img');
+  img.src = link.href;
+  img.alt = thumb ? thumb.alt : '';
+  updateCaption();
+  if (!lightbox.classList.contains('active')) {
+    lightbox.classList.add('active');
+    document.body.classList.add('lightbox-open');
+    closeBtn.focus({ preventScroll: true });
+  }
+  preload(currentIndex + 1);
+  preload(currentIndex - 1);
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.classList.remove('lightbox-open');
+  img.src = '';
+  const link = links[currentIndex];
+  if (link) link.focus({ preventScroll: true });
+}
+
+links.forEach((link, index) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    showImage(index);
   });
+});
 
-  // ===================================================
+nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex + 1); });
+prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex - 1); });
+closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
 
+// Clic sur le fond sombre = fermer
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox || e.target.classList.contains('lightbox-figure')) closeLightbox();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+  if (e.key === 'ArrowLeft')  showImage(currentIndex - 1);
+  if (e.key === 'Escape')     closeLightbox();
+});
+
+// Balayage sur mobile
 let touchStartX = 0;
-
 lightbox.addEventListener('touchstart', (e) => {
   touchStartX = e.changedTouches[0].clientX;
 }, { passive: true });
@@ -225,21 +105,152 @@ lightbox.addEventListener('touchstart', (e) => {
 lightbox.addEventListener('touchend', (e) => {
   const dx = e.changedTouches[0].clientX - touchStartX;
   if (Math.abs(dx) < 50) return;
-  if (dx < 0) nextBtn.click();
-  else prevBtn.click();
+  showImage(currentIndex + (dx < 0 ? 1 : -1));
 });
 
-// Animation d'apparition au défilement pour les éléments .reveal
-const reveals = document.querySelectorAll('.reveal');
+// ===================================================
+// RETOUR EN HAUT
+// ===================================================
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => {
+  toTop.classList.toggle('show', window.scrollY > 600);
+}, { passive: true });
+toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ===================================================
+// CALENDRIER DISPONIBILITÉS
+// ===================================================
+// Les réservations sont dans reservations.json — éditez ce fichier pour les mettre à jour.
+// Format : { "start": "AAAA-MM-JJ", "end": "AAAA-MM-JJ" } — les deux bornes sont INCLUSES.
+// Les dates ci-dessous servent de secours si le fichier JSON ne charge pas (ex : ouverture locale).
+let bookedRanges = [
+  { start: "2026-04-04", end: "2026-04-06" },
+  { start: "2026-04-16", end: "2026-04-19" },
+  { start: "2026-04-29", end: "2026-05-02" },
+  { start: "2026-05-07", end: "2026-05-09" },
+  { start: "2026-05-14", end: "2026-05-17" },
+  { start: "2026-05-22", end: "2026-05-25" },
+  { start: "2026-06-12", end: "2026-06-13" },
+  { start: "2026-07-02", end: "2026-07-06" },
+  { start: "2026-07-04", end: "2026-07-08" },
+  { start: "2026-08-01", end: "2026-08-15" },
+];
+
+// Ne garde que les plages au format attendu (AAAA-MM-JJ) : un fichier mal
+// formé ou modifié ne peut ni casser le calendrier ni y injecter du contenu.
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+function sanitizeRanges(data) {
+  if (!Array.isArray(data)) return null;
+  return data.filter(r =>
+    r && typeof r.start === 'string' && typeof r.end === 'string' &&
+    DATE_RE.test(r.start) && DATE_RE.test(r.end)
+  );
+}
+
+fetch('reservations.json', { cache: 'no-cache' })
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(data => {
+    const clean = sanitizeRanges(data);
+    if (clean) { bookedRanges = clean; renderCalendars(); }
+  })
+  .catch(() => {});
+
+// Date locale au format AAAA-MM-JJ (et non UTC, qui décale d'un jour autour de minuit)
+function toYMD(d) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+const isBooked = (dateStr) => bookedRanges.some(r => dateStr >= r.start && dateStr <= r.end);
+
+const MONTHS_FR = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+const MONTHS_EN = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const DAYS_FR   = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
+const DAYS_EN   = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+// 3 mois sur grand écran, 2 sinon
+const wideScreen = window.matchMedia('(min-width: 1120px)');
+let calOffset = 0; // nombre de mois depuis aujourd'hui (0 = mois courant)
+
+// Crée un élément avec une classe et un texte (textContent : jamais interprété comme du HTML)
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+function renderCalendars() {
+  const grid = document.getElementById("calendars-grid");
+  const en = isEnglish();
+  const today = toYMD(new Date());
+  const monthsToShow = wideScreen.matches ? 3 : 2;
+  const fragment = document.createDocumentFragment();
+
+  for (let m = 0; m < monthsToShow; m++) {
+    const now = new Date();
+    const target = new Date(now.getFullYear(), now.getMonth() + calOffset + m, 1);
+    const year  = target.getFullYear();
+    const month = target.getMonth(); // 0-based
+
+    const monthName = (en ? MONTHS_EN : MONTHS_FR)[month];
+    const dayLabels = en ? DAYS_EN : DAYS_FR;
+
+    // Premier jour de la semaine (lundi = 0)
+    let firstDow = target.getDay(); // 0=Sun..6=Sat
+    firstDow = (firstDow === 0) ? 6 : firstDow - 1;
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const monthEl = el('div', 'cal-month');
+    monthEl.appendChild(el('div', 'cal-month-title', `${monthName} ${year}`));
+
+    const calGrid = el('div', 'cal-grid');
+    dayLabels.forEach(d => calGrid.appendChild(el('div', 'cal-cell cal-day-label', d)));
+
+    for (let i = 0; i < firstDow; i++) {
+      calGrid.appendChild(el('div', 'cal-cell cal-empty'));
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      let cls = "cal-cell cal-day";
+      if (dateStr === today)     cls += " cal-today";
+      if (dateStr < today)       cls += " cal-past";
+      else if (isBooked(dateStr)) cls += " cal-booked";
+      else                       cls += " cal-available";
+      calGrid.appendChild(el('div', cls, String(day)));
+    }
+
+    monthEl.appendChild(calGrid);
+    fragment.appendChild(monthEl);
+  }
+
+  grid.replaceChildren(fragment);
+
+  // Désactive "mois précédent" sur le mois courant
+  document.getElementById("cal-prev").disabled = (calOffset <= 0);
+}
+
+document.getElementById("cal-prev").addEventListener("click", () => {
+  if (calOffset > 0) { calOffset--; renderCalendars(); }
+});
+document.getElementById("cal-next").addEventListener("click", () => {
+  calOffset++;
+  renderCalendars();
+});
+wideScreen.addEventListener('change', renderCalendars);
+
+renderCalendars();
+
+// ===================================================
+// ANIMATION D'APPARITION AU DÉFILEMENT
+// ===================================================
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
 }, { threshold: 0.15 });
 
-reveals.forEach(reveal => revealObserver.observe(reveal));
+document.querySelectorAll('.reveal').forEach(r => revealObserver.observe(r));
 
 // ===================================================
 // CARTE GOOGLE MAPS — chargée seulement après un clic (RGPD)

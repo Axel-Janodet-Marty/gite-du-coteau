@@ -88,31 +88,74 @@ body.lang-en .fr {
    EN-TÊTE
    =================================================== */
 
-header {
+/* Titre posé sur la photo de la maison, avec un voile dégradé pour la lisibilité */
+.hero {
   position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: clamp(460px, 78vh, 720px);
+  padding: 96px 24px 64px;
   text-align: center;
-  color: #fbf7f0;
-  padding: 88px 24px 76px;
-  background:
-    radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.10), transparent 60%),
-    radial-gradient(ellipse at 100% 100%, rgba(178, 94, 56, 0.28), transparent 55%),
-    var(--green-dark);
+  color: #fff;
+  background: var(--green-dark);
 }
 
-header h1 {
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: block;
+  overflow: hidden;
+}
+
+.hero-photo .img-mini {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s ease;
+}
+
+.hero-photo:hover .img-mini { transform: scale(1.02); }
+
+.hero-photo:focus-visible { outline-offset: -6px; }
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+    rgba(18, 22, 16, 0.45) 0%,
+    rgba(18, 22, 16, 0.05) 30%,
+    rgba(18, 22, 16, 0.15) 55%,
+    rgba(18, 22, 16, 0.75) 100%);
+}
+
+/* Le texte laisse passer les clics vers la photo (ouverture de la visionneuse) */
+.hero-content {
+  max-width: 780px;
+  pointer-events: none;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+.hero h1 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  line-height: 1.15;
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  line-height: 1.1;
   letter-spacing: -0.01em;
   margin-bottom: 16px;
 }
 
-header p {
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  max-width: 560px;
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  max-width: 580px;
   margin: 0 auto;
-  opacity: 0.88;
+  opacity: 0.95;
 }
 
 /* Bouton de changement de langue */
@@ -172,25 +215,16 @@ header p {
   color: var(--green-dark);
 }
 
-/* ===================================================
-   PHOTO PRINCIPALE
-   =================================================== */
-
-.container > .lightbox-link {
-  display: block;
-  overflow: hidden;
-}
-
-.lightbox-link .img-mini {
-  display: block;
-  width: 100%;
-  height: clamp(260px, 50vw, 540px);
-  object-fit: cover;
-  transition: transform 0.8s ease;
-}
-
-.lightbox-link .img-mini:hover {
-  transform: scale(1.02);
+/* Icônes au trait (SVG en ligne) */
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* ===================================================
@@ -282,7 +316,50 @@ header p {
 
 .description strong { color: var(--ink); }
 
-/* Badges infos clés */
+/* Chiffres clés */
+.description > .key-facts {
+  max-width: 880px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  padding: 22px 12px 18px;
+  background: var(--sand);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.fact .icon {
+  width: 30px;
+  height: 30px;
+  stroke-width: 1.5;
+  color: var(--terra);
+  margin-bottom: 8px;
+}
+
+.description .fact-value {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.7rem;
+  line-height: 1.15;
+  color: var(--green-dark);
+}
+
+.fact-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Pastilles d'équipements */
 .badges {
   display: flex;
   flex-wrap: wrap;
@@ -294,7 +371,7 @@ header p {
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: var(--surface);
   color: var(--ink);
   font-weight: 700;
@@ -305,57 +382,153 @@ header p {
   box-shadow: var(--shadow);
 }
 
-.badge-airbnb-link {
-  text-decoration: none;
-  display: inline-flex;
-}
+.badge .icon { color: var(--green); }
 
-.badge-airbnb-link .badge {
+a.badge-airbnb {
+  text-decoration: none;
   background: var(--terra);
   border-color: var(--terra);
   color: #fff;
-  cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.badge-airbnb-link:hover .badge {
+a.badge-airbnb .icon { color: #fff; width: 16px; height: 16px; }
+
+a.badge-airbnb:hover {
   background: #9a4f2e;
   transform: translateY(-1px);
 }
 
-/* Tarifs */
-.description .prix {
-  font-size: 1.05rem;
-  background: var(--sand);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 16px 22px;
-  margin-top: 12px;
-  margin-bottom: 0;
-  line-height: 1.8;
+/* Tarifs : cartes côte à côte */
+.description > .price-grid {
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
-.description .prix strong {
-  color: var(--terra);
+.price-card {
+  display: flex;
+  flex-direction: column;
+  padding: 22px 22px 20px;
+  background: var(--sand);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.price-card:hover {
+  border-color: #d8ccb9;
+  box-shadow: var(--shadow);
+}
+
+.price-card p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.price-card .price-name {
+  font-size: 0.76rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.price-card .price-main {
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.price-main small {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.price-card .price-sub {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.description .price-sub strong {
+  color: var(--terra);
   white-space: nowrap;
 }
 
-.description .prix-note {
-  font-size: 0.9rem;
+.price-card .price-note {
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 0.85rem;
   color: var(--muted);
-  padding-left: 22px;
-  margin-top: 6px;
-  margin-bottom: 0;
 }
 
-/* Dernier encadré « Pour toutes autres demandes… » (suivi d'un paragraphe sans classe) */
-.description .prix:has(+ p:not([class])) {
-  background: transparent;
-  border-style: dashed;
-  color: var(--muted);
-  margin-bottom: 40px;
+.description .price-contact {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 52px;
 }
+
+.price-contact a {
+  display: inline-block;
+  padding: 10px 22px;
+  border: 1px dashed #cdbfa9;
+  border-radius: 999px;
+  color: var(--green-dark);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.price-contact a:hover { background: var(--green-soft); }
+
+/* Rubriques repliables (Équipements, Kit bébé, Animaux…) */
+.description > details.more:first-of-type { margin-top: 44px; }
+
+.more {
+  border-top: 1px solid var(--line);
+}
+
+.more:last-of-type { border-bottom: 1px solid var(--line); }
+
+.more summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 4px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.more summary::-webkit-details-marker { display: none; }
+
+.description .more h3 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  transition: color 0.2s ease;
+}
+
+.more summary:hover h3 { color: var(--green); }
+
+.more .chevron {
+  width: 22px;
+  height: 22px;
+  color: var(--muted);
+  transition: transform 0.25s ease;
+}
+
+.more[open] .chevron { transform: rotate(180deg); }
+
+.more-body { padding: 0 4px 22px; }
+
+.description .more-body > :first-child { margin-top: 0; }
 
 /* ===================================================
    CALENDRIER DISPONIBILITÉS
@@ -444,8 +617,8 @@ header p {
   border: 1px solid var(--line);
   border-radius: 20px;
   box-shadow: var(--shadow);
-  padding: 22px;
-  width: 310px;
+  padding: 20px;
+  width: 300px;
   flex-shrink: 0;
 }
 
@@ -602,21 +775,41 @@ header p {
 
 .lightbox-overlay.active { display: flex; }
 
+body.lightbox-open { overflow: hidden; }
+
+.lightbox-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 86vw;
+}
+
 .lightbox-overlay img {
-  max-width: 88%;
-  max-height: 86%;
+  max-width: 86vw;
+  max-height: calc(88vh - 50px);
+  object-fit: contain;
   border-radius: 10px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.lightbox-overlay::after {
-  content: "✕";
-  position: absolute;
-  top: 18px;
-  right: 26px;
-  font-size: 1.6rem;
-  color: rgba(255, 255, 255, 0.85);
-  cursor: pointer;
+.lightbox-caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 14px;
+  color: #fff;
+}
+
+#lightbox-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+}
+
+#lightbox-count {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-variant-numeric: tabular-nums;
 }
 
 .lightbox-overlay button {
@@ -641,6 +834,13 @@ header p {
 
 #prev { left: 18px; }
 #next { right: 18px; }
+
+.lightbox-overlay #lightbox-close {
+  top: 16px;
+  right: 16px;
+  transform: none;
+  font-size: 1.1rem;
+}
 
 /* Appel à l'action (bouton Airbnb, actuellement masqué dans le HTML) */
 .cta {
@@ -799,11 +999,16 @@ footer p:nth-child(n + 3) {
   box-shadow: 0 10px 28px rgba(43, 40, 36, 0.25);
   cursor: pointer;
   display: none;
-  z-index: 10001;
+  z-index: 8000;
   transition: transform 0.2s ease;
 }
 
+#toTop.show { display: block; }
+
 #toTop:hover { transform: translateY(-2px); }
+
+/* Barre de contact fixe — visible seulement sur mobile */
+.contact-bar { display: none; }
 
 /* Animation révélation au défilement */
 .reveal {
@@ -838,8 +1043,57 @@ button:focus-visible {
   .container { border-radius: 0; box-shadow: none; }
 }
 
+@media (max-width: 900px) {
+  .description > .price-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 680px) {
-  header { padding: 76px 20px 56px; }
+  .hero {
+    min-height: clamp(420px, 72vh, 600px);
+    padding: 80px 20px 44px;
+  }
+
+  .description > .key-facts { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .fact { padding: 18px 10px 14px; }
+  .description .fact-value { font-size: 1.45rem; }
+
+  .description > .price-grid { grid-template-columns: 1fr; gap: 10px; }
+  .price-card { padding: 18px 18px 16px; }
+  .price-card .price-main { font-size: 1.8rem; }
+
+  .contact-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9000;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(255, 253, 249, 0.94);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -6px 24px rgba(43, 40, 36, 0.08);
+  }
+
+  .contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+
+  .contact-call { background: var(--green-dark); color: #fff; }
+  .contact-mail { background: var(--surface); color: var(--green-dark); border: 1px solid var(--line); }
+
+  body { padding-bottom: 72px; }
+  #toTop { bottom: 84px; right: 14px; }
 
   .quick-nav {
     justify-content: flex-start;
@@ -859,16 +1113,17 @@ button:focus-visible {
   .gallery-block .lightbox-link:only-of-type,
   .gallery-block .lightbox-link:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
 
-  .description .prix { padding: 14px 16px; }
-  .description .prix strong { white-space: normal; }
 
   .cal-month { width: 100%; max-width: 330px; padding: 16px; }
   .calendars-grid { gap: 16px; }
   .calendars-wrapper { gap: 8px; }
   .cal-nav-btn { width: 36px; height: 36px; font-size: 1.3rem; }
 
-  .lightbox-overlay img { max-width: 100%; border-radius: 0; }
-  .lightbox-overlay button { width: 42px; height: 42px; }
-  #prev { left: 8px; }
-  #next { right: 8px; }
+  .lightbox-figure { max-width: 100vw; }
+  .lightbox-overlay img { max-width: 100vw; max-height: calc(100vh - 200px); border-radius: 0; }
+  .lightbox-overlay button { width: 44px; height: 44px; }
+  .lightbox-overlay #prev,
+  .lightbox-overlay #next { top: auto; bottom: 24px; transform: none; }
+  #prev { left: calc(50% - 56px); }
+  #next { right: calc(50% - 56px); }
 }

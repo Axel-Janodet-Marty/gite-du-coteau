@@ -4,3 +4,6 @@ CSS_avant_a_conserver.txt
 
 # Dossier de build vide
 .dist/
+
+# Photos originales en pleine résolution (sauvegarde locale, trop lourdes pour le site)
+photos_originales/

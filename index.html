@@ -52,17 +52,26 @@
 <body>
   <button id="toTop" aria-label="Retour en haut">↑</button>
   <div class="container">
-    <header>
+    <header class="hero">
+      <!-- Photo d'accueil (cliquable : ouvre la visionneuse) -->
+      <a href="jardin2_new.jpg" class="lightbox-link hero-photo">
+        <img src="jardin2_new.jpg"
+             alt="Photo de la maison vu depuis le jardin"
+             fetchpriority="high"
+             class="img-mini">
+      </a>
       <!-- Bouton permettant de faire la traduction de Français à Anglais -->
       <button id="lang-toggle">🇬🇧 English</button>
-      <h1>
-        <span class="fr">Gîte du Coteau à Asnières sous Bois</span>
-        <span class="en">Gîte du Coteau in Asnières sous Bois</span>
-      </h1>
-      <p>
-        <span class="fr">Installez-vous et laissez-vous séduire par le charme de ce lieu à 2H15 de Paris.</span>
-        <span class="en">Make yourself at home and let yourself be charmed by this lovely place at 2H15 from Paris.</span>
-      </p>
+      <div class="hero-content">
+        <h1>
+          <span class="fr">Gîte du Coteau à Asnières sous Bois</span>
+          <span class="en">Gîte du Coteau in Asnières sous Bois</span>
+        </h1>
+        <p>
+          <span class="fr">Installez-vous et laissez-vous séduire par le charme de ce lieu à 2H15 de Paris.</span>
+          <span class="en">Make yourself at home and let yourself be charmed by this lovely place at 2H15 from Paris.</span>
+        </p>
+      </div>
     </header>
 
     <nav class="quick-nav">
@@ -92,13 +101,6 @@
   </a>
 </nav>
 
-<a href="jardin2_new.jpg" class="lightbox-link">
-  <img src="jardin2_new.jpg"
-       alt="Photo de la maison vu depuis le jardin"
-       loading="lazy"
-       class="img-mini">
-</a>
-
 
 
     <section class="description">
@@ -107,82 +109,101 @@
         <span class="fr">Description</span>
         <span class="en">Description</span>
       </h2>
+      <!-- Chiffres clés -->
+      <div class="key-facts">
+        <div class="fact">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 17h20"/></svg>
+          <strong class="fact-value">12</strong>
+          <span class="fact-label"><span class="fr">couchages (+5 possible)</span><span class="en">beds (+5 extra possible)</span></span>
+        </div>
+        <div class="fact">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/></svg>
+          <strong class="fact-value">180 m²</strong>
+          <span class="fact-label"><span class="fr">habitables</span><span class="en">of living space</span></span>
+        </div>
+        <div class="fact">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-7"/><path d="M12 15a6 6 0 0 0 6-6c0-3.3-2.7-7-6-7S6 5.7 6 9a6 6 0 0 0 6 6z"/><path d="M9 22h6"/></svg>
+          <strong class="fact-value">1000 m²</strong>
+          <span class="fact-label"><span class="fr">de terrain clos</span><span class="en">enclosed garden</span></span>
+        </div>
+        <div class="fact">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M2 18c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M8 9V4a2 2 0 0 1 4 0"/></svg>
+          <strong class="fact-value"><span class="fr">Piscine</span><span class="en">Pool</span></strong>
+          <span class="fact-label"><span class="fr">juillet – août</span><span class="en">July – August</span></span>
+        </div>
+      </div>
+
       <div class="badges">
-    <!-- Badges classiques -->
-    <span class="badge fr">🛏️ 12 couchages (+5 possible)</span>
-    <span class="badge en">🛏️ 12 beds (+5 extra possible)</span>
-
-    <span class="badge fr">🧼 2 salles de bains</span>
-    <span class="badge en">🧼 2 bathrooms</span>
-
-    <span class="badge fr">📶 Wi-Fi fibre</span>
-    <span class="badge en">📶 Fiber Wi-Fi</span>
-
-    <span class="badge fr">🍽️ Cuisine équipée</span>
-    <span class="badge en">🍽️ Fully equipped kitchen</span>
-
-    <span class="badge fr">🏊‍♀️ Piscine</span>
-    <span class="badge en">🏊‍♀️ Swimming pool</span>
-
-   <!-- Le badge AirBnB cliquable -->
-    <a href="https://www.airbnb.fr/rooms/1476569417973861294" target="_blank" rel="noopener noreferrer" class="badge-airbnb-link">
-        <span class="badge fr">Référencé AirBnB</span>
-        <span class="badge en">Referenced on AirBnB</span>
-    </a>
-  </div>
+        <span class="badge">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-3z"/><path d="M6 12V5a2 2 0 0 1 4 0"/><path d="M7 20l-1 2M17 20l1 2"/></svg>
+          <span class="fr">2 salles de bains</span><span class="en">2 bathrooms</span>
+        </span>
+        <span class="badge">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9a15 15 0 0 1 20 0"/><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><path d="M12 19.5h.01"/></svg>
+          <span class="fr">Wi-Fi fibre</span><span class="en">Fiber Wi-Fi</span>
+        </span>
+        <span class="badge">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v20"/><path d="M4 2v5a3 3 0 0 0 6 0V2"/><path d="M18 22V2c-2.5 1-4 3.5-4 7v4h4"/></svg>
+          <span class="fr">Cuisine équipée</span><span class="en">Fully equipped kitchen</span>
+        </span>
+        <!-- Le badge AirBnB cliquable -->
+        <a href="https://www.airbnb.fr/rooms/1476569417973861294" target="_blank" rel="noopener noreferrer" class="badge badge-airbnb">
+          <span class="fr">Référencé AirBnB</span><span class="en">Referenced on AirBnB</span>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+      </div>
 
 
-      <h2>
+      <h2 id="tarifs">
         <span class="fr">Prix</span>
         <span class="en">Prices</span>
       </h2>
 
-      <p class="prix" id="tarifs">
-        <span class="fr">Haute saison <strong>1400 € /semaine</strong><br>Prix par nuit <strong>220 € /nuit</strong></span>
-        <span class="en">High season <strong>1400 €/week</strong><br>Price per night <strong>220 € /night</strong></span>
-      </p>
-      <p class="prix-note">
-        <span class="fr">(Vacances d'été et de Noël)</span>
-        <span class="en">(Summer and Christmas holidays)</span>
+      <div class="price-grid">
+        <div class="price-card">
+          <p class="price-name"><span class="fr">Haute saison</span><span class="en">High season</span></p>
+          <p class="price-main"><span class="fr">1400 € <small>/semaine</small></span><span class="en">1400 € <small>/week</small></span></p>
+          <p class="price-sub"><span class="fr">Prix par nuit <strong>220 € /nuit</strong></span><span class="en">Price per night <strong>220 € /night</strong></span></p>
+          <p class="price-note"><span class="fr">(Vacances d'été et de Noël)</span><span class="en">(Summer and Christmas holidays)</span></p>
+        </div>
+
+        <div class="price-card">
+          <p class="price-name"><span class="fr">Moyenne saison</span><span class="en">Medium season</span></p>
+          <p class="price-main"><span class="fr">1250 € <small>/semaine</small></span><span class="en">1250 € <small>/week</small></span></p>
+          <p class="price-sub"><span class="fr">Prix par nuit <strong>200 € /nuit</strong></span><span class="en">Price per night <strong>200 € /night</strong></span></p>
+          <p class="price-note"><span class="fr">(Vacances de printemps)</span><span class="en">(Spring holidays)</span></p>
+        </div>
+
+        <div class="price-card">
+          <p class="price-name"><span class="fr">Basse saison</span><span class="en">Low season</span></p>
+          <p class="price-main"><span class="fr">1100 € <small>/semaine</small></span><span class="en">1100 € <small>/week</small></span></p>
+          <p class="price-sub"><span class="fr">Prix par nuit <strong>180 € /nuit</strong></span><span class="en">Price per night <strong>180 € /night</strong></span></p>
+        </div>
+
+        <div class="price-card">
+          <p class="price-name"><span class="fr">Pont de Mai</span><span class="en">May Bank Holiday</span></p>
+          <p class="price-main"><span class="fr">200 € <small>/nuit</small></span><span class="en">200 € <small>/night</small></span></p>
+        </div>
+
+        <div class="price-card">
+          <p class="price-name"><span class="fr">Week-end hors vacances scolaires</span><span class="en">Weekend outside of holidays, cleaning included</span></p>
+          <p class="price-main"><span class="fr">500 € <small>/week-end</small></span><span class="en">500 € <small>/week-end</small></span></p>
+          <p class="price-note"><span class="fr">(Du vendredi 17h au dimanche 17h + ménage compris)</span><span class="en">(Friday 5pm to Sunday 5pm, cleaning included)</span></p>
+        </div>
+
+        <div class="price-card">
+          <p class="price-name"><span class="fr">Ménage obligatoire par séjour</span><span class="en">Cleaning required per stay</span></p>
+          <p class="price-main">90 €</p>
+        </div>
+      </div>
+
+      <p class="price-contact">
+        <a href="#contact">
+          <span class="fr">Pour toutes autres demandes contactez le propriétaire</span>
+          <span class="en">For any other dates, please contact the owner</span>
+        </a>
       </p>
 
-      <p class="prix">
-        <span class="fr">Moyenne saison <strong>1250 € /semaine</strong><br>Prix par nuit <strong>200 € /nuit</strong></span>
-        <span class="en">Medium season <strong>1250 €/week</strong><br>Price per night <strong>200 € /night</strong></span>
-      </p>
-      <p class="prix-note">
-        <span class="fr">(Vacances de printemps)</span>
-        <span class="en">(Spring holidays)</span>
-      </p>
-
-      <p class="prix">
-        <span class="fr">Basse saison <strong>1100 € /semaine</strong><br>Prix par nuit <strong>180 € /nuit</strong></span>
-        <span class="en">Low season <strong>1100 €/week</strong><br>Price per night <strong>180 € /night</strong></span>
-      </p>
-
-      <p class="prix">
-        <span class="fr">Pont de Mai <strong>200 € /nuit</strong></span>
-        <span class="en">May Bank Holiday <strong>200 € /night</strong></span>
-      </p>
-
-      <p class="prix">
-        <span class="fr">Week-end hors vacances scolaires <strong>500 € /week-end</strong></span>
-        <span class="en">Weekend outside of holidays, cleaning included <strong>500 €/week-end</strong></span>
-      </p>
-      <p class="prix-note">
-        <span class="fr">(Du vendredi 17h au dimanche 17h + ménage compris)</span>
-        <span class="en">(Friday 5pm to Sunday 5pm, cleaning included)</span>
-      </p>
-
-      <p class="prix">
-        <span class="fr">🧹 Ménage obligatoire par séjour <strong>90 €</strong></span>
-        <span class="en">Cleaning required per stay <strong>90 €</strong></span>
-      </p>
-
-      <p class="prix">
-        <span class="fr">Pour toutes autres demandes contactez le propriétaire</span>
-        <span class="en">For any other dates, please contact the owner</span>
-      </p>
      <p>
   <span class="fr"><strong>Maison de famille authentique, dans un petit village de charme, idéale pour se ressourcer.</strong></span><br>
   <span class="en"><strong>Authentic family home, in a charming little village, ideal for recharging your batteries.</strong></span>
@@ -234,14 +255,16 @@
   <span class="en">Swimming pool</span>
 </h3>
 <ul>
-  <li><span class="fr">Piscine hors sol ovale (non chauffée) + jeux de piscine  <strong> (Uniquement en Juillet et Août)</strong></span><span class="en">Oval above-ground pool + pool games</span></li>
+  <li><span class="fr">Piscine hors sol ovale (non chauffée) + jeux de piscine  <strong> (Uniquement en Juillet et Août)</strong></span><span class="en">Oval above-ground pool (unheated) + pool games <strong>(July and August only)</strong></span></li>
 </ul>
 
 
-<h3>
+<details class="more">
+  <summary><h3>
   <span class="fr">Équipements</span>
   <span class="en">Amenities</span>
-</h3>
+</h3><svg class="icon chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+  <div class="more-body">
 <ul>
   <li><span class="fr">Robot ménager, service à raclette</span><span class="en">Food processor, raclette set</span></li>
   <li><span class="fr">Machines à café Dolce Gusto et Nespresso</span><span class="en">Dolce Gusto and Nespresso coffee machines</span></li>
@@ -252,29 +275,41 @@
   <li><span class="fr">Cheminée avec possibilité de fourniture de bois</span><span class="en">Fireplace with wood supply available</span></li>
   <li><span class="fr">Wi-fi (fibre)</span><span class="en">Wi-Fi (fiber)</span></li>
 </ul>
+  </div>
+</details>
 
-<h3>
+<details class="more">
+  <summary><h3>
   <span class="fr">Kit bébé</span>
   <span class="en">Baby kit</span>
-</h3>
+</h3><svg class="icon chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+  <div class="more-body">
 <ul>
   <li><span class="fr">Lit parapluie, chaise haute, poussette canne</span><span class="en">Travel cot, high chair, umbrella stroller</span></li>
   <li><span class="fr">Réhausseur, pot et adaptateur toilette</span><span class="en">Booster seat, potty, toilet adapter</span></li>
 </ul>
+  </div>
+</details>
 
-<h3>
+<details class="more">
+  <summary><h3>
   <span class="fr">Animaux</span>
   <span class="en">Pets</span>
-</h3>
+</h3><svg class="icon chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+  <div class="more-body">
 <p>
   <span class="fr"><strong>Animaux acceptés : </strong>Pour les conditions contacter le propriétaire.</span>
   <span class="en"><strong>Pets allowed : </strong>For conditions, please contact the owner.</span>
 </p>
+  </div>
+</details>
 
-<h3>
+<details class="more">
+  <summary><h3>
   <span class="fr">Autres remarques</span>
   <span class="en">Other notes</span>
-</h3>
+</h3><svg class="icon chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+  <div class="more-body">
 <p>
   <span class="fr">Le village d'Asnières-sous-Bois ne dispose d'aucun commerce.</span><br>
   <span class="en">The village of Asnières-sous-Bois has no shops.</span><br>
@@ -283,11 +318,15 @@
   <span class="fr">À 11 km, Clamecy : hypermarchés Leclerc, Bi1, Aldi, Carrefour City, tous commerces, banques, stations-service, marché couvert le samedi matin.</span>
   <span class="en">11 km away, Clamecy: supermarkets (Leclerc, Bi1, Aldi, Carrefour City), all types of shops, banks, gas stations, and a covered market on Saturday mornings.</span>
 </p>
+  </div>
+</details>
 
-<h3>
+<details class="more">
+  <summary><h3>
   <span class="fr">Activités dans la région</span>
   <span class="en">Activities in the area</span>
-</h3>
+</h3><svg class="icon chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+  <div class="more-body">
 <ul>
   <li><span class="fr">Détente au bord du canal du Nivernais</span><span class="en">Relaxing by the Nivernais Canal</span></li>
   <li><span class="fr">Escalade au rocher du Saussois</span><span class="en">Rock climbing at Saussois Rock</span></li>
@@ -302,6 +341,8 @@
   <li><span class="fr">Pêche, baignade, canoë dans lacs et rivières</span><span class="en">Fishing, swimming, canoeing in lakes and rivers</span></li>
   <li><span class="fr">Escapades viticoles dans le Chablisien</span><span class="en">Wine tours in the Chablis region</span></li>
 </ul>
+  </div>
+</details>
 
     </section>
 
@@ -345,12 +386,12 @@
             <span class="fr">Salle à manger</span>
             <span class="en">Dining room</span>
           </h3>
-          <a href="salle_a_manger1_new.jpg" class="lightbox-link"><img src="salle_a_manger1_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
-          <a href="salle_a_manger2_new.jpg" class="lightbox-link"><img src="salle_a_manger2_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
-          <!--<a href="salle_a_manger3_new.jpg" class="lightbox-link"><img src="salle_a_manger3_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
-          <a href="salle_a_manger4_new.jpg" class="lightbox-link"><img src="salle_a_manger4_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
-          <a href="salle_a_manger5_new.jpg" class="lightbox-link"><img src="salle_a_manger5_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>-->
-          <p> Table et chaises supplémentaires fournies </p>
+          <a href="salle_a_manger1_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger1_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
+          <a href="salle_a_manger2_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger2_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
+          <!--<a href="salle_a_manger3_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger3_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
+          <a href="salle_a_manger4_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger4_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
+          <a href="salle_a_manger5_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger5_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>-->
+          <p><span class="fr">Table et chaises supplémentaires fournies</span><span class="en">Extra table and chairs provided</span></p>
         </div>
 
         <div class="gallery-block">
@@ -358,8 +399,8 @@
             <span class="fr">Cuisine</span>
             <span class="en">Kitchen</span>
           </h3>
-          <a href="cuisine_6.jpg" class="lightbox-link"><img src="cuisine_6.jpg" alt="Photo cuisine" loading="lazy"></a>
-          <a href="cuisine3.jpg" class="lightbox-link"><img src="cuisine3.jpg" alt="Photo cuisine" loading="lazy"></a>
+          <a href="cuisine_6.jpg" class="lightbox-link"><img src="mini/cuisine_6.jpg" alt="Photo cuisine" loading="lazy"></a>
+          <a href="cuisine3.jpg" class="lightbox-link"><img src="mini/cuisine3.jpg" alt="Photo cuisine" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
@@ -367,8 +408,8 @@
             <span class="fr">Salon</span>
             <span class="en">Living room</span>
           </h3>
-          <a href="salon1.jpg" class="lightbox-link"><img src="salon1.jpg" alt="Photo du salon" loading="lazy"></a>
-          <a href="salon2.jpg" class="lightbox-link"><img src="salon2.jpg" alt="Photo du salon" loading="lazy"></a>
+          <a href="salon1.jpg" class="lightbox-link"><img src="mini/salon1.jpg" alt="Photo du salon" loading="lazy"></a>
+          <a href="salon2.jpg" class="lightbox-link"><img src="mini/salon2.jpg" alt="Photo du salon" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
@@ -376,9 +417,9 @@
             <span class="fr">Salle de bain du bas</span>
             <span class="en">Downstairs bathroom</span>
           </h3>
-          <a href="sbd_bas_1_new.jpg" class="lightbox-link"><img src="sbd_bas_1_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
-          <a href="sbd_bas_2_new.jpg" class="lightbox-link"><img src="sbd_bas_2_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
-          <a href="sbd_bas_3_new.jpg" class="lightbox-link"><img src="sbd_bas_3_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
+          <a href="sbd_bas_1_new.jpg" class="lightbox-link"><img src="mini/sbd_bas_1_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
+          <a href="sbd_bas_2_new.jpg" class="lightbox-link"><img src="mini/sbd_bas_2_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
+          <a href="sbd_bas_3_new.jpg" class="lightbox-link"><img src="mini/sbd_bas_3_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
@@ -386,7 +427,7 @@
             <span class="fr">Salle de bain du haut</span>
             <span class="en">Upstairs bathroom</span>
           </h3>
-          <a href="sbd_haut_new.jpg" class="lightbox-link"><img src="sbd_haut_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
+          <a href="sbd_haut_new.jpg" class="lightbox-link"><img src="mini/sbd_haut_new.jpg" alt="Photo salle de bain du haut" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
@@ -394,8 +435,8 @@
             <span class="fr">Première chambre</span>
             <span class="en">First bedroom</span>
           </h3>
-          <a href="chambre_blanche1_new.png" class="lightbox-link"><img src="chambre_blanche1_new.png" alt="Photo chambre blanche" loading="lazy"></a>
-          <a href="chambre_blanche2_new.png" class="lightbox-link"><img src="chambre_blanche2_new.png" alt="Photo chambre blanche" loading="lazy"></a>
+          <a href="chambre_blanche1_new.jpg" class="lightbox-link"><img src="mini/chambre_blanche1_new.jpg" alt="Photo chambre blanche" loading="lazy"></a>
+          <a href="chambre_blanche2_new.jpg" class="lightbox-link"><img src="mini/chambre_blanche2_new.jpg" alt="Photo chambre blanche" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
@@ -403,8 +444,8 @@
             <span class="fr">Deuxième chambre</span>
             <span class="en">Second bedroom</span>
           </h3>
-          <a href="chambre_orange1.jpg" class="lightbox-link"><img src="chambre_orange1.jpg" alt="Photo chambre orange" loading="lazy"></a>
-          <a href="chambre_orange2.jpg" class="lightbox-link"><img src="chambre_orange2.jpg" alt="Photo chambre orange" loading="lazy"></a>
+          <a href="chambre_orange1.jpg" class="lightbox-link"><img src="mini/chambre_orange1.jpg" alt="Photo chambre orange" loading="lazy"></a>
+          <a href="chambre_orange2.jpg" class="lightbox-link"><img src="mini/chambre_orange2.jpg" alt="Photo chambre orange" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
@@ -412,8 +453,8 @@
             <span class="fr">Troisième chambre</span>
             <span class="en">Third bedroom</span>
           </h3>
-          <a href="chambre_violette1.JPG" class="lightbox-link"><img src="chambre_violette1.JPG" alt="Photo chambre violette" loading="lazy"></a>
-          <a href="Chambre_violette_new.jpg" class="lightbox-link"><img src="Chambre_violette_new.jpg" alt="Photo chambre violette" loading="lazy"></a>
+          <a href="chambre_violette1.JPG" class="lightbox-link"><img src="mini/chambre_violette1.jpg" alt="Photo chambre violette" loading="lazy"></a>
+          <a href="Chambre_violette_new.jpg" class="lightbox-link"><img src="mini/Chambre_violette_new.jpg" alt="Photo chambre violette" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
@@ -421,9 +462,9 @@
             <span class="fr">Dortoir</span>
             <span class="en">Dormitory</span>
           </h3>
-          <a href="dortoir2.jpg" class="lightbox-link"><img src="dortoir2.jpg" alt="Photo Dortoir" loading="lazy"></a>
-          <a href="dortoir3.jpg" class="lightbox-link"><img src="dortoir3.jpg" alt="Photo Dortoir" loading="lazy"></a>
-          <a href="dortoir_4.jpg" class="lightbox-link"><img src="dortoir_4.jpg" alt="Photo Dortoir" loading="lazy"></a>
+          <a href="dortoir2.jpg" class="lightbox-link"><img src="mini/dortoir2.jpg" alt="Photo Dortoir" loading="lazy"></a>
+          <a href="dortoir3.jpg" class="lightbox-link"><img src="mini/dortoir3.jpg" alt="Photo Dortoir" loading="lazy"></a>
+          <a href="dortoir_4.jpg" class="lightbox-link"><img src="mini/dortoir_4.jpg" alt="Photo Dortoir" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
@@ -431,7 +472,7 @@
             <span class="fr">Couloir de l'étage</span>
             <span class="en">Floor corridor</span>
           </h3>
-          <a href="couloir_etage.jpg" class="lightbox-link"><img src="couloir_etage.jpg" alt="Photo couloir de l'étage" loading="lazy"></a>
+          <a href="couloir_etage.jpg" class="lightbox-link"><img src="mini/couloir_etage.jpg" alt="Photo couloir de l'étage" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
@@ -439,15 +480,15 @@
             <span class="fr">Jardin</span>
             <span class="en">Garden</span>
           </h3>
-          <a href="jardin1.jpg" class="lightbox-link"><img src="jardin1.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="jardin5.JPG" class="lightbox-link"><img src="jardin5.JPG" alt="Photo du jardin" loading="lazy"></a>
-          <a href="jardin1_new.jpg" class="lightbox-link"><img src="jardin1_new.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="jardin2_new.jpg" class="lightbox-link"><img src="jardin2_new.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="jardin3_new.jpg" class="lightbox-link"><img src="jardin3_new.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="jardin4_new.jpg" class="lightbox-link"><img src="jardin4_new.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="table_ping_new.jpg" class="lightbox-link"><img src="table_ping_new.jpg" alt="Photo table de ping pong" loading="lazy"></a>
-          <a href="garage1_new.png" class="lightbox-link"><img src="garage1_new.png" alt="Photo du garage" loading="lazy"></a>
-          <a href="garage2_new.png" class="lightbox-link"><img src="garage2_new.png" alt="Photo du garage" loading="lazy"></a>
+          <a href="jardin1.jpg" class="lightbox-link"><img src="mini/jardin1.jpg" alt="Photo du jardin" loading="lazy"></a>
+          <a href="jardin5.JPG" class="lightbox-link"><img src="mini/jardin5.jpg" alt="Photo du jardin" loading="lazy"></a>
+          <a href="jardin1_new.jpg" class="lightbox-link"><img src="mini/jardin1_new.jpg" alt="Photo du jardin" loading="lazy"></a>
+          <a href="jardin2_new.jpg" class="lightbox-link"><img src="mini/jardin2_new.jpg" alt="Photo du jardin" loading="lazy"></a>
+          <a href="jardin3_new.jpg" class="lightbox-link"><img src="mini/jardin3_new.jpg" alt="Photo du jardin" loading="lazy"></a>
+          <a href="jardin4_new.jpg" class="lightbox-link"><img src="mini/jardin4_new.jpg" alt="Photo du jardin" loading="lazy"></a>
+          <a href="table_ping_new.jpg" class="lightbox-link"><img src="mini/table_ping_new.jpg" alt="Photo table de ping pong" loading="lazy"></a>
+          <a href="garage1_new.jpg" class="lightbox-link"><img src="mini/garage1_new.jpg" alt="Photo du garage" loading="lazy"></a>
+          <a href="garage2_new.jpg" class="lightbox-link"><img src="mini/garage2_new.jpg" alt="Photo du garage" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
@@ -455,27 +496,27 @@
             <span class="fr">Extérieur</span>
             <span class="en">Outside</span>
           </h3>
-          <a href="exterieur_1.jpg" class="lightbox-link"><img src="exterieur_1.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
-          <a href="exterieur2.JPG" class="lightbox-link"><img src="exterieur2.JPG" alt="Photo de l'extérieur" loading="lazy"></a>
-          <a href="exterieur4_new.jpg" class="lightbox-link"><img src="exterieur4_new.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
-          <a href="exterieur3.JPG" class="lightbox-link"><img src="exterieur3.JPG" alt="Photo de l'extérieur" loading="lazy"></a>
+          <a href="exterieur_1.jpg" class="lightbox-link"><img src="mini/exterieur_1.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
+          <a href="exterieur2.JPG" class="lightbox-link"><img src="mini/exterieur2.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
+          <a href="exterieur4_new.jpg" class="lightbox-link"><img src="mini/exterieur4_new.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
+          <a href="exterieur3.JPG" class="lightbox-link"><img src="mini/exterieur3.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
           <h3>
             <span class="fr">Chambre en option numéro 1</span>
-            <span class="en">Third bedroom</span>
+            <span class="en">Optional bedroom no. 1</span>
           </h3>
-          <a href="chambre_vieux_lit2.jpg" class="lightbox-link"><img src="chambre_vieux_lit2.jpg" alt="Photo chambre numéro 3 - vue 1" loading="lazy"></a>
-          <a href="chambre_vieux_lit3.jpg" class="lightbox-link"><img src="chambre_vieux_lit3.jpg" alt="Photo chambre numéro 3 - vue 2" loading="lazy"></a>
+          <a href="chambre_vieux_lit2.jpg" class="lightbox-link"><img src="mini/chambre_vieux_lit2.jpg" alt="Photo chambre numéro 3 - vue 1" loading="lazy"></a>
+          <a href="chambre_vieux_lit3.jpg" class="lightbox-link"><img src="mini/chambre_vieux_lit3.jpg" alt="Photo chambre numéro 3 - vue 2" loading="lazy"></a>
         </div>
 
         <div class="gallery-block">
           <h3>
             <span class="fr">Chambre en option numéro 2</span>
-            <span class="en">Fourth bedroom</span>
+            <span class="en">Optional bedroom no. 2</span>
           </h3>
-          <a href="chambre_violette_lit_orange.jpg" class="lightbox-link"><img src="chambre_violette_lit_orange.jpg" alt="Photo chambre voilet lit orange" loading="lazy"></a>
+          <a href="chambre_violette_lit_orange.jpg" class="lightbox-link"><img src="mini/chambre_violette_lit_orange.jpg" alt="Photo chambre violette lit orange" loading="lazy"></a>
         </div>
         
       </section>
@@ -530,8 +571,8 @@
         <span class="en">Listing on Airbnb: <strong><a href="https://www.airbnb.fr/rooms/1476569417973861294">See the cottage</a></strong></span>
       </p>
       <p>
-        <span class="fr">&copy; 2025 Mon logement – Merci de votre visite ❤️</span>
-        <span class="en">&copy; 2025 My Home – Thank you for your visit ❤️</span>
+        <span class="fr">&copy; 2026 Gîte du Coteau – Merci de votre visite ❤️</span>
+        <span class="en">&copy; 2026 Gîte du Coteau – Thank you for your visit ❤️</span>
       </p>
       <p>
         <span class="fr">Tous droits réservés</span>
@@ -542,11 +583,30 @@
 
   <!-- Lightbox HTML (inchangé) -->
 
-  <div class="lightbox-overlay" id="lightbox">
+  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Photos">
+    <button id="lightbox-close" aria-label="Fermer">&#10005;</button>
     <button id="prev" aria-label="Image précédente">&#10094;</button>
-    <img src="" alt="Agrandissement image" id="lightbox-img">
+    <figure class="lightbox-figure">
+      <img src="" alt="Agrandissement image" id="lightbox-img">
+      <figcaption class="lightbox-caption">
+        <span id="lightbox-title"></span>
+        <span id="lightbox-count"></span>
+      </figcaption>
+    </figure>
     <button id="next" aria-label="Image suivante">&#10095;</button>
   </div>
+
+  <!-- Barre de contact fixe (mobile uniquement) -->
+  <nav class="contact-bar" aria-label="Contact">
+    <a href="tel:+33611691021" class="contact-btn contact-call">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+      <span class="fr">Appeler</span><span class="en">Call</span>
+    </a>
+    <a href="mailto:david.marty@laposte.net" class="contact-btn contact-mail">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+      <span class="fr">E-mail</span><span class="en">Email</span>
+    </a>
+  </nav>
 
   <!-- Début du script JavaScript -->
 
