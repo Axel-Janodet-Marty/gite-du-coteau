@@ -45,7 +45,8 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E🏡%3C/text%3E%3C/svg%3E">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preload" href="fonts/raleway-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="Style.css?v=3">
+  <link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="Style.css?v=4">
 </head>
 
 
@@ -61,7 +62,7 @@
              class="img-mini">
       </a>
       <!-- Bouton permettant de faire la traduction de Français à Anglais -->
-      <button id="lang-toggle">🇬🇧 English</button>
+      <button id="lang-toggle"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg><span id="lang-label">English</span></button>
       <div class="hero-content">
         <h1>
           <span class="fr">Gîte du Coteau à Asnières sous Bois</span>
@@ -72,6 +73,7 @@
           <span class="en">Make yourself at home and let yourself be charmed by this lovely place at 2H15 from Paris.</span>
         </p>
       </div>
+      <a href="#description" class="scroll-cue" aria-label="Défiler vers la description"><span></span></a>
     </header>
 
     <nav class="quick-nav">
@@ -103,7 +105,7 @@
 
 
 
-    <section class="description">
+    <section class="description" id="description">
 
       <h2>
         <span class="fr">Description</span>
@@ -161,6 +163,7 @@
 
       <div class="price-grid">
         <div class="price-card">
+          <svg class="icon price-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
           <p class="price-name"><span class="fr">Haute saison</span><span class="en">High season</span></p>
           <p class="price-main"><span class="fr">1400 € <small>/semaine</small></span><span class="en">1400 € <small>/week</small></span></p>
           <p class="price-sub"><span class="fr">Prix par nuit <strong>220 € /nuit</strong></span><span class="en">Price per night <strong>220 € /night</strong></span></p>
@@ -168,6 +171,7 @@
         </div>
 
         <div class="price-card">
+          <svg class="icon price-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22v-9"/><circle cx="12" cy="8" r="3"/><path d="M12 5V3M15 8h2M9 8H7M14.1 5.9l1.4-1.4M9.9 5.9 8.5 4.5"/><path d="M12 19c-2.5 0-4.5-1.8-4.5-4 2.5 0 4.5 1.8 4.5 4zM12 17.5c2.5 0 4.5-1.8 4.5-4-2.5 0-4.5 1.8-4.5 4z"/></svg>
           <p class="price-name"><span class="fr">Moyenne saison</span><span class="en">Medium season</span></p>
           <p class="price-main"><span class="fr">1250 € <small>/semaine</small></span><span class="en">1250 € <small>/week</small></span></p>
           <p class="price-sub"><span class="fr">Prix par nuit <strong>200 € /nuit</strong></span><span class="en">Price per night <strong>200 € /night</strong></span></p>
@@ -175,23 +179,27 @@
         </div>
 
         <div class="price-card">
+          <svg class="icon price-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.2-6"/></svg>
           <p class="price-name"><span class="fr">Basse saison</span><span class="en">Low season</span></p>
           <p class="price-main"><span class="fr">1100 € <small>/semaine</small></span><span class="en">1100 € <small>/week</small></span></p>
           <p class="price-sub"><span class="fr">Prix par nuit <strong>180 € /nuit</strong></span><span class="en">Price per night <strong>180 € /night</strong></span></p>
         </div>
 
         <div class="price-card">
+          <svg class="icon price-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 20h10"/><path d="M12 20V10"/><path d="M12 10c0-3-2-5-5-5 0 3 2 5 5 5zM12 13c0-3 2-5 5-5 0 3-2 5-5 5z"/></svg>
           <p class="price-name"><span class="fr">Pont de Mai</span><span class="en">May Bank Holiday</span></p>
           <p class="price-main"><span class="fr">200 € <small>/nuit</small></span><span class="en">200 € <small>/night</small></span></p>
         </div>
 
         <div class="price-card">
+          <svg class="icon price-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
           <p class="price-name"><span class="fr">Week-end hors vacances scolaires</span><span class="en">Weekend outside of holidays, cleaning included</span></p>
           <p class="price-main"><span class="fr">500 € <small>/week-end</small></span><span class="en">500 € <small>/week-end</small></span></p>
           <p class="price-note"><span class="fr">(Du vendredi 17h au dimanche 17h + ménage compris)</span><span class="en">(Friday 5pm to Sunday 5pm, cleaning included)</span></p>
         </div>
 
         <div class="price-card">
+          <svg class="icon price-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
           <p class="price-name"><span class="fr">Ménage obligatoire par séjour</span><span class="en">Cleaning required per stay</span></p>
           <p class="price-main">90 €</p>
         </div>
@@ -204,20 +212,20 @@
         </a>
       </p>
 
-     <p>
+     <p class="lead">
   <span class="fr"><strong>Maison de famille authentique, dans un petit village de charme, idéale pour se ressourcer.</strong></span><br>
   <span class="en"><strong>Authentic family home, in a charming little village, ideal for recharging your batteries.</strong></span>
   <span class="fr">Vous profiterez de la campagne et de ses activités : balades ou sport en pleine nature, sites remarquables et soirées au coin du feu ou sous les étoiles... La région regorge de champignons !</span>
   <span class="en">You will enjoy the countryside and its activities: walks or outdoor sports, remarkable sites, and evenings by the fire or under the stars... The region is full of mushrooms!</span>
 </p>
 
-<p>
+<p class="lead-sub">
   <span class="fr">Le village calme d'Asnières-sous-Bois est situé à 10 km de Vézelay, un des plus beaux villages de France et haut lieu de pèlerinage.</span>
   <span class="en">The peaceful village of Asnières-sous-Bois is located 10 km from Vézelay, one of the most beautiful villages in France and an important pilgrimage site.</span>
 </p>
 
-<h3>
-  <span class="fr" id="logement">Le logement</span>
+<h3 id="logement"><span class="h-icon"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/></svg></span>
+  <span class="fr">Le logement</span>
   <span class="en">The accommodation</span>
 </h3>
 <p>
@@ -237,7 +245,7 @@
       <span class="en"><strong>Additional option:</strong> 2 rooms on the second floor with 2 double beds and 1 single bed (total capacity: 17 people). Contact the owner for access to these rooms.</span></li>
 </ul>
 
-<h3>
+<h3><span class="h-icon"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 22v-7"/><path d="M12 15a6 6 0 0 0 6-6c0-3.3-2.7-7-6-7S6 5.7 6 9a6 6 0 0 0 6 6z"/><path d="M9 22h6"/></svg></span>
   <span class="fr">À l’extérieur</span>
   <span class="en">Outside</span>
 </h3>
@@ -250,7 +258,7 @@
   <li><span class="fr">Parking accolé à la maison, pouvant accueillir plusieurs véhicules</span><span class="en">Parking next to the house, can accommodate several vehicles</span></li>
 </ul>
 
-<h3>
+<h3><span class="h-icon"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M2 18c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M8 9V4a2 2 0 0 1 4 0"/></svg></span>
   <span class="fr">Piscine</span>
   <span class="en">Swimming pool</span>
 </h3>
@@ -260,7 +268,7 @@
 
 
 <details class="more">
-  <summary><h3>
+  <summary><h3><span class="h-icon"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg></span>
   <span class="fr">Équipements</span>
   <span class="en">Amenities</span>
 </h3><svg class="icon chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
@@ -279,7 +287,7 @@
 </details>
 
 <details class="more">
-  <summary><h3>
+  <summary><h3><span class="h-icon"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 12h.01M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/></svg></span>
   <span class="fr">Kit bébé</span>
   <span class="en">Baby kit</span>
 </h3><svg class="icon chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
@@ -292,7 +300,7 @@
 </details>
 
 <details class="more">
-  <summary><h3>
+  <summary><h3><span class="h-icon"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg></span>
   <span class="fr">Animaux</span>
   <span class="en">Pets</span>
 </h3><svg class="icon chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
@@ -305,7 +313,7 @@
 </details>
 
 <details class="more">
-  <summary><h3>
+  <summary><h3><span class="h-icon"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
   <span class="fr">Autres remarques</span>
   <span class="en">Other notes</span>
 </h3><svg class="icon chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
@@ -322,7 +330,7 @@
 </details>
 
 <details class="more">
-  <summary><h3>
+  <summary><h3><span class="h-icon"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36z"/></svg></span>
   <span class="fr">Activités dans la région</span>
   <span class="en">Activities in the area</span>
 </h3><svg class="icon chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
@@ -349,8 +357,8 @@
 <!-- ===== CALENDRIER DISPONIBILITÉS ===== -->
 <section class="availability-section reveal" id="disponibilites">
   <h2 class="availability-title">
-    <span class="fr">📅 Disponibilités</span>
-    <span class="en">📅 Availability</span>
+    <span class="fr">Disponibilités</span>
+    <span class="en">Availability</span>
   </h2>
 
   <div class="calendar-legend">
@@ -379,144 +387,201 @@
 
 <main>
   <section class="gallery" id="galerie">
+        <h2 class="gallery-title"><span class="fr">Galerie</span><span class="en">Gallery</span></h2>
         <!-- Toutes les images doivent avoir la classe lightbox-link -->
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Salle à manger</span>
-            <span class="en">Dining room</span>
-          </h3>
-          <a href="salle_a_manger1_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger1_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
-          <a href="salle_a_manger2_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger2_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
-          <!--<a href="salle_a_manger3_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger3_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
-          <a href="salle_a_manger4_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger4_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
-          <a href="salle_a_manger5_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger5_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>-->
-          <p><span class="fr">Table et chaises supplémentaires fournies</span><span class="en">Extra table and chairs provided</span></p>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Salle à manger</span>
+              <span class="en">Dining room</span>
+            </h3>
+            <p><span class="fr">Table et chaises supplémentaires fournies</span><span class="en">Extra table and chairs provided</span></p>
+          </div>
+          <div class="photos photos-2">
+            <a href="salle_a_manger1_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger1_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
+            <a href="salle_a_manger2_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger2_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
+            <!--<a href="salle_a_manger3_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger3_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
+            <a href="salle_a_manger4_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger4_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>
+            <a href="salle_a_manger5_new.jpg" class="lightbox-link"><img src="mini/salle_a_manger5_new.jpg" alt="Photo de la salle à manger" loading="lazy"></a>-->
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Cuisine</span>
-            <span class="en">Kitchen</span>
-          </h3>
-          <a href="cuisine_6.jpg" class="lightbox-link"><img src="mini/cuisine_6.jpg" alt="Photo cuisine" loading="lazy"></a>
-          <a href="cuisine3.jpg" class="lightbox-link"><img src="mini/cuisine3.jpg" alt="Photo cuisine" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Cuisine</span>
+              <span class="en">Kitchen</span>
+            </h3>
+          </div>
+          <div class="photos photos-2">
+            <a href="cuisine_6.jpg" class="lightbox-link"><img src="mini/cuisine_6.jpg" alt="Photo cuisine" loading="lazy"></a>
+            <a href="cuisine3.jpg" class="lightbox-link"><img src="mini/cuisine3.jpg" alt="Photo cuisine" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Salon</span>
-            <span class="en">Living room</span>
-          </h3>
-          <a href="salon1.jpg" class="lightbox-link"><img src="mini/salon1.jpg" alt="Photo du salon" loading="lazy"></a>
-          <a href="salon2.jpg" class="lightbox-link"><img src="mini/salon2.jpg" alt="Photo du salon" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Salon</span>
+              <span class="en">Living room</span>
+            </h3>
+          </div>
+          <div class="photos photos-2">
+            <a href="salon1.jpg" class="lightbox-link"><img src="mini/salon1.jpg" alt="Photo du salon" loading="lazy"></a>
+            <a href="salon2.jpg" class="lightbox-link"><img src="mini/salon2.jpg" alt="Photo du salon" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Salle de bain du bas</span>
-            <span class="en">Downstairs bathroom</span>
-          </h3>
-          <a href="sbd_bas_1_new.jpg" class="lightbox-link"><img src="mini/sbd_bas_1_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
-          <a href="sbd_bas_2_new.jpg" class="lightbox-link"><img src="mini/sbd_bas_2_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
-          <a href="sbd_bas_3_new.jpg" class="lightbox-link"><img src="mini/sbd_bas_3_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Salle de bain du bas</span>
+              <span class="en">Downstairs bathroom</span>
+            </h3>
+          </div>
+          <div class="photos photos-3">
+            <a href="sbd_bas_1_new.jpg" class="lightbox-link"><img src="mini/sbd_bas_1_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
+            <a href="sbd_bas_2_new.jpg" class="lightbox-link"><img src="mini/sbd_bas_2_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
+            <a href="sbd_bas_3_new.jpg" class="lightbox-link"><img src="mini/sbd_bas_3_new.jpg" alt="Photo salle de bain du bas" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Salle de bain du haut</span>
-            <span class="en">Upstairs bathroom</span>
-          </h3>
-          <a href="sbd_haut_new.jpg" class="lightbox-link"><img src="mini/sbd_haut_new.jpg" alt="Photo salle de bain du haut" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Salle de bain du haut</span>
+              <span class="en">Upstairs bathroom</span>
+            </h3>
+          </div>
+          <div class="photos photos-1">
+            <a href="sbd_haut_new.jpg" class="lightbox-link"><img src="mini/sbd_haut_new.jpg" alt="Photo salle de bain du haut" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Première chambre</span>
-            <span class="en">First bedroom</span>
-          </h3>
-          <a href="chambre_blanche1_new.jpg" class="lightbox-link"><img src="mini/chambre_blanche1_new.jpg" alt="Photo chambre blanche" loading="lazy"></a>
-          <a href="chambre_blanche2_new.jpg" class="lightbox-link"><img src="mini/chambre_blanche2_new.jpg" alt="Photo chambre blanche" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Première chambre</span>
+              <span class="en">First bedroom</span>
+            </h3>
+          </div>
+          <div class="photos photos-2">
+            <a href="chambre_blanche1_new.jpg" class="lightbox-link"><img src="mini/chambre_blanche1_new.jpg" alt="Photo chambre blanche" loading="lazy"></a>
+            <a href="chambre_blanche2_new.jpg" class="lightbox-link"><img src="mini/chambre_blanche2_new.jpg" alt="Photo chambre blanche" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Deuxième chambre</span>
-            <span class="en">Second bedroom</span>
-          </h3>
-          <a href="chambre_orange1.jpg" class="lightbox-link"><img src="mini/chambre_orange1.jpg" alt="Photo chambre orange" loading="lazy"></a>
-          <a href="chambre_orange2.jpg" class="lightbox-link"><img src="mini/chambre_orange2.jpg" alt="Photo chambre orange" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Deuxième chambre</span>
+              <span class="en">Second bedroom</span>
+            </h3>
+          </div>
+          <div class="photos photos-2">
+            <a href="chambre_orange1.jpg" class="lightbox-link"><img src="mini/chambre_orange1.jpg" alt="Photo chambre orange" loading="lazy"></a>
+            <a href="chambre_orange2.jpg" class="lightbox-link"><img src="mini/chambre_orange2.jpg" alt="Photo chambre orange" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Troisième chambre</span>
-            <span class="en">Third bedroom</span>
-          </h3>
-          <a href="chambre_violette1.JPG" class="lightbox-link"><img src="mini/chambre_violette1.jpg" alt="Photo chambre violette" loading="lazy"></a>
-          <a href="Chambre_violette_new.jpg" class="lightbox-link"><img src="mini/Chambre_violette_new.jpg" alt="Photo chambre violette" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Troisième chambre</span>
+              <span class="en">Third bedroom</span>
+            </h3>
+          </div>
+          <div class="photos photos-2">
+            <a href="chambre_violette1.JPG" class="lightbox-link"><img src="mini/chambre_violette1.jpg" alt="Photo chambre violette" loading="lazy"></a>
+            <a href="Chambre_violette_new.jpg" class="lightbox-link"><img src="mini/Chambre_violette_new.jpg" alt="Photo chambre violette" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Dortoir</span>
-            <span class="en">Dormitory</span>
-          </h3>
-          <a href="dortoir2.jpg" class="lightbox-link"><img src="mini/dortoir2.jpg" alt="Photo Dortoir" loading="lazy"></a>
-          <a href="dortoir3.jpg" class="lightbox-link"><img src="mini/dortoir3.jpg" alt="Photo Dortoir" loading="lazy"></a>
-          <a href="dortoir_4.jpg" class="lightbox-link"><img src="mini/dortoir_4.jpg" alt="Photo Dortoir" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Dortoir</span>
+              <span class="en">Dormitory</span>
+            </h3>
+          </div>
+          <div class="photos photos-3">
+            <a href="dortoir2.jpg" class="lightbox-link"><img src="mini/dortoir2.jpg" alt="Photo Dortoir" loading="lazy"></a>
+            <a href="dortoir3.jpg" class="lightbox-link"><img src="mini/dortoir3.jpg" alt="Photo Dortoir" loading="lazy"></a>
+            <a href="dortoir_4.jpg" class="lightbox-link"><img src="mini/dortoir_4.jpg" alt="Photo Dortoir" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Couloir de l'étage</span>
-            <span class="en">Floor corridor</span>
-          </h3>
-          <a href="couloir_etage.jpg" class="lightbox-link"><img src="mini/couloir_etage.jpg" alt="Photo couloir de l'étage" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Couloir de l'étage</span>
+              <span class="en">Floor corridor</span>
+            </h3>
+          </div>
+          <div class="photos photos-1">
+            <a href="couloir_etage.jpg" class="lightbox-link"><img src="mini/couloir_etage.jpg" alt="Photo couloir de l'étage" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Jardin</span>
-            <span class="en">Garden</span>
-          </h3>
-          <a href="jardin1.jpg" class="lightbox-link"><img src="mini/jardin1.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="jardin5.JPG" class="lightbox-link"><img src="mini/jardin5.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="jardin1_new.jpg" class="lightbox-link"><img src="mini/jardin1_new.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="jardin2_new.jpg" class="lightbox-link"><img src="mini/jardin2_new.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="jardin3_new.jpg" class="lightbox-link"><img src="mini/jardin3_new.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="jardin4_new.jpg" class="lightbox-link"><img src="mini/jardin4_new.jpg" alt="Photo du jardin" loading="lazy"></a>
-          <a href="table_ping_new.jpg" class="lightbox-link"><img src="mini/table_ping_new.jpg" alt="Photo table de ping pong" loading="lazy"></a>
-          <a href="garage1_new.jpg" class="lightbox-link"><img src="mini/garage1_new.jpg" alt="Photo du garage" loading="lazy"></a>
-          <a href="garage2_new.jpg" class="lightbox-link"><img src="mini/garage2_new.jpg" alt="Photo du garage" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Jardin</span>
+              <span class="en">Garden</span>
+            </h3>
+          </div>
+          <div class="photos photos-9">
+            <a href="jardin1.jpg" class="lightbox-link"><img src="mini/jardin1.jpg" alt="Photo du jardin" loading="lazy"></a>
+            <a href="jardin5.JPG" class="lightbox-link"><img src="mini/jardin5.jpg" alt="Photo du jardin" loading="lazy"></a>
+            <a href="jardin1_new.jpg" class="lightbox-link"><img src="mini/jardin1_new.jpg" alt="Photo du jardin" loading="lazy"></a>
+            <a href="jardin2_new.jpg" class="lightbox-link"><img src="mini/jardin2_new.jpg" alt="Photo du jardin" loading="lazy"></a>
+            <a href="jardin3_new.jpg" class="lightbox-link"><img src="mini/jardin3_new.jpg" alt="Photo du jardin" loading="lazy"></a>
+            <a href="jardin4_new.jpg" class="lightbox-link"><img src="mini/jardin4_new.jpg" alt="Photo du jardin" loading="lazy"></a>
+            <a href="table_ping_new.jpg" class="lightbox-link"><img src="mini/table_ping_new.jpg" alt="Photo table de ping pong" loading="lazy"></a>
+            <a href="garage1_new.jpg" class="lightbox-link"><img src="mini/garage1_new.jpg" alt="Photo du garage" loading="lazy"></a>
+            <a href="garage2_new.jpg" class="lightbox-link"><img src="mini/garage2_new.jpg" alt="Photo du garage" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Extérieur</span>
-            <span class="en">Outside</span>
-          </h3>
-          <a href="exterieur_1.jpg" class="lightbox-link"><img src="mini/exterieur_1.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
-          <a href="exterieur2.JPG" class="lightbox-link"><img src="mini/exterieur2.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
-          <a href="exterieur4_new.jpg" class="lightbox-link"><img src="mini/exterieur4_new.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
-          <a href="exterieur3.JPG" class="lightbox-link"><img src="mini/exterieur3.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Extérieur</span>
+              <span class="en">Outside</span>
+            </h3>
+          </div>
+          <div class="photos photos-4">
+            <a href="exterieur_1.jpg" class="lightbox-link"><img src="mini/exterieur_1.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
+            <a href="exterieur2.JPG" class="lightbox-link"><img src="mini/exterieur2.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
+            <a href="exterieur4_new.jpg" class="lightbox-link"><img src="mini/exterieur4_new.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
+            <a href="exterieur3.JPG" class="lightbox-link"><img src="mini/exterieur3.jpg" alt="Photo de l'extérieur" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Chambre en option numéro 1</span>
-            <span class="en">Optional bedroom no. 1</span>
-          </h3>
-          <a href="chambre_vieux_lit2.jpg" class="lightbox-link"><img src="mini/chambre_vieux_lit2.jpg" alt="Photo chambre numéro 3 - vue 1" loading="lazy"></a>
-          <a href="chambre_vieux_lit3.jpg" class="lightbox-link"><img src="mini/chambre_vieux_lit3.jpg" alt="Photo chambre numéro 3 - vue 2" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Chambre en option numéro 1</span>
+              <span class="en">Optional bedroom no. 1</span>
+            </h3>
+          </div>
+          <div class="photos photos-2">
+            <a href="chambre_vieux_lit2.jpg" class="lightbox-link"><img src="mini/chambre_vieux_lit2.jpg" alt="Photo chambre numéro 3 - vue 1" loading="lazy"></a>
+            <a href="chambre_vieux_lit3.jpg" class="lightbox-link"><img src="mini/chambre_vieux_lit3.jpg" alt="Photo chambre numéro 3 - vue 2" loading="lazy"></a>
+          </div>
         </div>
 
-        <div class="gallery-block">
-          <h3>
-            <span class="fr">Chambre en option numéro 2</span>
-            <span class="en">Optional bedroom no. 2</span>
-          </h3>
-          <a href="chambre_violette_lit_orange.jpg" class="lightbox-link"><img src="mini/chambre_violette_lit_orange.jpg" alt="Photo chambre violette lit orange" loading="lazy"></a>
+        <div class="gallery-block room">
+          <div class="room-head">
+            <h3>
+              <span class="fr">Chambre en option numéro 2</span>
+              <span class="en">Optional bedroom no. 2</span>
+            </h3>
+          </div>
+          <div class="photos photos-1">
+            <a href="chambre_violette_lit_orange.jpg" class="lightbox-link"><img src="mini/chambre_violette_lit_orange.jpg" alt="Photo chambre violette lit orange" loading="lazy"></a>
+          </div>
         </div>
         
       </section>
@@ -535,8 +600,8 @@
     <!-- ===== COMMENT VENIR ===== -->
     <section class="map-section">
       <h2>
-        <span class="fr">📍 Comment venir</span>
-        <span class="en">📍 How to get there</span>
+        <span class="fr">Comment venir</span>
+        <span class="en">How to get there</span>
       </h2>
       <p>
         <span class="fr">Asnières-sous-Bois, 89660 (Yonne) — À 10 km de Vézelay, 2h15 de Paris par l'A6</span>
@@ -546,8 +611,9 @@
         <div class="map-placeholder">
           <p class="map-placeholder-address">Asnières-sous-Bois, 89660 (Yonne)</p>
           <button type="button" id="map-load" class="map-load-btn">
-            <span class="fr">🗺️ Afficher la carte</span>
-            <span class="en">🗺️ Show the map</span>
+            <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg>
+            <span class="fr">Afficher la carte</span>
+            <span class="en">Show the map</span>
           </button>
           <p class="map-placeholder-note">
             <span class="fr">La carte est fournie par Google Maps. En l'affichant, vous acceptez que Google reçoive votre adresse IP et puisse déposer des cookies.</span>
@@ -562,6 +628,11 @@
     </section>
 
     <footer id="contact">
+      <div class="footer-brand">
+        <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h14V9"/><path d="M10 21v-6h4v6"/></svg>
+        <p class="footer-name">Gîte du Coteau</p>
+        <p class="footer-place">Asnières-sous-Bois · Yonne</p>
+      </div>
       <p>
         <span class="fr">Pour toutes questions ou renseignements supplémentaires : <strong><a href="mailto:david.marty@laposte.net">david.marty@laposte.net</a></strong> ou <strong>06 11 69 10 21</strong></span>
         <span class="en">For any questions, please contact us at: <strong><a href="mailto:david.marty@laposte.net">david.marty@laposte.net</a></strong> or <strong>06 11 69 10 21</strong></span>
@@ -610,6 +681,6 @@
 
   <!-- Début du script JavaScript -->
 
-  <script src="script.js?v=3" defer></script>
+  <script src="script.js?v=4" defer></script>
 </body>
 </html>

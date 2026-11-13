@@ -12,7 +12,7 @@ const isEnglish = () => document.body.classList.contains('lang-en');
 
 toggleBtn.addEventListener('click', () => {
   const en = document.body.classList.toggle('lang-en');
-  toggleBtn.textContent = en ? '🇫🇷 Français' : '🇬🇧 English';
+  document.getElementById('lang-label').textContent = en ? 'Français' : 'English';
   document.documentElement.lang = en ? 'en' : 'fr';
   renderCalendars();
   if (lightbox.classList.contains('active')) updateCaption();
@@ -109,12 +109,34 @@ lightbox.addEventListener('touchend', (e) => {
 });
 
 // ===================================================
-// RETOUR EN HAUT
+// DÉFILEMENT : retour en haut, menu collant, section active
 // ===================================================
-const toTop = document.getElementById('toTop');
-window.addEventListener('scroll', () => {
+const toTop    = document.getElementById('toTop');
+const nav      = document.querySelector('.quick-nav');
+const navLinks = Array.from(nav.querySelectorAll('a'));
+const navTargets = navLinks.map(a => document.querySelector(a.getAttribute('href')));
+let scrollTicking = false;
+
+function onScroll() {
+  scrollTicking = false;
   toTop.classList.toggle('show', window.scrollY > 600);
+  nav.classList.toggle('scrolled', nav.getBoundingClientRect().top <= 0 && window.scrollY > 0);
+
+  // Section active = la dernière dont le haut est passé sous le menu
+  let active = -1;
+  navTargets.forEach((target, i) => {
+    if (target && target.getBoundingClientRect().top < 160) active = i;
+  });
+  const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+  if (atBottom) active = navLinks.length - 1;
+  navLinks.forEach((a, i) => a.classList.toggle('active', i === active));
+}
+
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) { scrollTicking = true; requestAnimationFrame(onScroll); }
 }, { passive: true });
+onScroll();
+
 toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 // ===================================================
@@ -244,11 +266,36 @@ renderCalendars();
 // ===================================================
 // ANIMATION D'APPARITION AU DÉFILEMENT
 // ===================================================
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+// Les éléments apparaissent en douceur (en cascade dans les grilles) quand ils arrivent à l'écran.
+// Rien n'est masqué si l'utilisateur a demandé à réduire les animations.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Seuls les éléments encore sous l'écran sont concernés : ce qui est déjà visible au chargement ne clignote pas.
+const belowFold = (node) => node.getBoundingClientRect().top > window.innerHeight;
+
+if (!reduceMotion && 'IntersectionObserver' in window) {
+  const staggered = ['.fact', '.price-card'];
+  staggered.forEach(sel => {
+    document.querySelectorAll(sel).forEach((node, i) => {
+      if (!belowFold(node)) return;
+      node.classList.add('reveal');
+      node.style.setProperty('--delay', `${(i % 3) * 90}ms`);
+    });
   });
-}, { threshold: 0.15 });
+  document.querySelectorAll(
+    '.badges, .price-contact, .lead, .lead-sub, .description > h3, .description > ul, .more, ' +
+    '.gallery-title, .room, .map-container'
+  ).forEach(node => { if (belowFold(node)) node.classList.add('reveal'); });
+}
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach(r => revealObserver.observe(r));
 
